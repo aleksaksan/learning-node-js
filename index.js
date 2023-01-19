@@ -50,4 +50,4 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, 'localhost', (error) => {
   error ? console.log(error) : console.log(`listening port ${PORT}`);
-})
+});
