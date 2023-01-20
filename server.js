@@ -13,6 +13,13 @@ app.listen(PORT, (error) => {
   error ? console.log(error) : console.log(`listening port ${PORT}`);
 });
 
+////////////////////////
+app.use((req, res, next) => {
+  console.log(`path:    ${req.path}`);
+  console.log(`method:  ${req.method}`);
+  next();
+});
+
 app.get('/', (req, res) => {
   const title = 'Home';
   res.render(createPath('HomePage'), { title });
