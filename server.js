@@ -14,12 +14,18 @@ app.listen(PORT, (error) => {
 });
 
 ////////////////////////
+
+// middleware should be before methods
 app.use((req, res, next) => {
   console.log(`path:    ${req.path}`);
   console.log(`method:  ${req.method}`);
   next();
 });
 
+// adding an exclusion to be able folder from outside server 
+app.use(express.static('styles'));
+
+// methods:
 app.get('/', (req, res) => {
   const title = 'Home';
   res.render(createPath('HomePage'), { title });
