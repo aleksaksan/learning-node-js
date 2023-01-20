@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body style="background-color: rgb(232, 232, 232);">
+  <div>
+    <%- include('./partials/nav.ejs') %>
+    <h1>Contacts Page</h1>
+    <% const name = 'Aleksan' %>
+    <div>
+      Name added in ejs file: <%= name %>
+    </div>
+    <ul>
+    <% if (contacts.length) { %>
+      <% contacts.forEach(({ name, link }) => { %>
+        <li>
+          <a href="<%= link %>"><%= name %></a>
+        </li>
+      <% }) %>
+    <% } %>
+    </ul>
+  </div>
+</body>
+</html>
