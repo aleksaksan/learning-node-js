@@ -2,17 +2,17 @@
 <html lang="en">
 <%- include('./partials/head.ejs') %>
 <body style="background-color: rgb(232, 232, 232);">
-  <div>
-    <%- include('./partials/nav.ejs') %>
+  <%- include('./partials/nav.ejs') %>
+  <div class="container">
     <h1>Contacts Page</h1>
     <% const name = 'Aleksan' %>
-    <div>
-      Name added in ejs file: <%= name %>
+    <div class="un-div">
+      Name added in ejs file: <strong><%= name %></strong>
     </div>
-    <ul>
+    <ul class="link-li-container">
     <% if (contacts.length) { %>
       <% contacts.forEach(({ name, link }) => { %>
-        <li>
+        <li class="link-li">
           <a href="<%= link %>"><%= name %></a>
         </li>
       <% }) %>
