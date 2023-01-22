@@ -55,3 +55,33 @@ nav ul li + li {
 .link-li + .link-li {
   margin-top: 16px;
 }
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 200px;
+}
+
+textarea:invalid {
+  border: 2px solid rgb(115, 0, 0);
+}
+
+textarea:valid {
+  border: 2px solid rgb(146, 146, 146);
+}
+
+.input-container input {
+  width: 280px;
+}
+
+form {
+  font-size: 24px;
+  width: 800px;
+  margin: 60px auto;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}

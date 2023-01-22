@@ -5,6 +5,20 @@
   <%- include('./partials/nav.ejs') %>
   <div class="container">
     <h1>New Post</h1>
+    <form>
+      <div class="input-wrapper">
+        <span class="input-container">
+          <label>Post title:</label>
+          <input type="text"/>
+        </span>  
+        <span class="input-container">
+          <label>Authtor:</label>
+          <input type="text"/>
+        </span>
+      </div>
+      <div>Text:</div>
+      <textarea type="text" required></textarea>
+    </form>
   </div>
 </body>
 </html>
