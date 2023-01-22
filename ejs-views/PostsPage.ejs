@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/head.ejs') %>
-<body style="background-color: rgb(255, 255, 222);">
+<body>
   <%- include('./partials/nav.ejs') %>
   <div class="container">
     <h1>Posts</h1>
-    <ul>
+    <ul class="posts-wrapper">
       <% if (posts.length) { %>
         <% posts.forEach(({ id, title, date, author, text }) => { %>
           <li>
-            <article>
+            <article class="post-container">
               <h3>
                 <a href="/posts/<%= id %>"><%= title %></a>
               </h3>

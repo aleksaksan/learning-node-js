@@ -7,6 +7,15 @@
 .container {
   margin: 0 auto;
   padding: 0 60px;
+  padding-top: 20px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(rgba(87, 1, 87, 0.2), rgb(255, 255, 222)) no-repeat;
 }
 
 nav {
@@ -40,7 +49,7 @@ nav ul li + li {
 }
 
 .container h1 {
-  margin: 20px 0 20px 0;
+  margin-bottom: 20px;
 }
 
 .un-div {
@@ -84,4 +93,23 @@ form {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+
+.posts-wrapper {
+  list-style: none;
+}
+
+.posts-info {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+.post-container {
+  padding: 20px 20px 0 20px;
+  border: solid 2px rgb(87, 1, 87);
 }
