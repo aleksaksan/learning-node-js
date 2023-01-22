@@ -22,6 +22,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.urlencoded({ extended: false }));
+
 // adding an exclusion to be able folder from outside server 
 app.use(express.static('styles'));
 
@@ -80,6 +82,13 @@ app.get('/add-post', (req, res) => {
   res.render(createPath('AddPostPage'), { title });
 });
 
+app.post('/add-post', (req, res) => {
+  res.send(req.body);
+});
+
+
+
+///////////////
 app.use((req, res) => {
   const title = 'Error';
   res

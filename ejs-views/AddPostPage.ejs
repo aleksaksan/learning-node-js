@@ -5,19 +5,22 @@
   <%- include('./partials/nav.ejs') %>
   <div class="container">
     <h1>New Post</h1>
-    <form>
+    <form id="post-form" method="post" action="/add-post">
       <div class="input-wrapper">
         <span class="input-container">
-          <label>Post title:</label>
-          <input type="text"/>
+          <label>Post title:
+            <input type="text" name="title"/>
+          </label>
         </span>  
         <span class="input-container">
-          <label>Authtor:</label>
-          <input type="text"/>
+          <label>Authtor:
+            <input type="text" name="author"/>
+          </label>
         </span>
       </div>
       <div>Text:</div>
-      <textarea type="text" required></textarea>
+      <textarea type="text" name="text" required></textarea>
+      <input type="submit" value="Submit" />
     </form>
   </div>
 </body>
