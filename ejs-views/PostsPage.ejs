@@ -6,18 +6,22 @@
   <div class="container">
     <h1>Posts</h1>
     <ul>
-      <li>
-        <article>
-          <h3>
-            <a>Post title</a>
-          </h3>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, autem maxime! Recusandae tempora quos ipsam animi doloribus. Sed ut quam libero hic dolores corrupti, ad pariatur explicabo consequatur omnis facere.</p>
-          <div class="posts-info">
-            <span>date</span>
-            <span>author</span>
-          </div>
-        </article>
-      </li>
+      <% if (posts.length) { %>
+        <% posts.forEach(({ id, title, date, author, text }) => { %>
+          <li>
+            <article>
+              <h3>
+                <a href="/posts/<%= id %>"><%= title %></a>
+              </h3>
+              <p><%= text %></p>
+              <div class="posts-info">
+                <span><%= date %></span>
+                <span><%= author %></span>
+              </div>
+            </article>
+          </li>
+        <% }) %>
+      <% } %>
     </ul>
   </div>
 </body>
