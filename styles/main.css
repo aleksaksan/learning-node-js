@@ -117,3 +117,8 @@ h3 {
 .post-container + .post-container {
   margin-top: 10px;
 }
+
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+}

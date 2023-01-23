@@ -10,9 +10,14 @@
         <% posts.forEach(({ id, title, date, author, text }) => { %>
           <li class="post-container">
             <article>
-              <h3>
-                <a href="/posts/<%= id %>"><%= title %></a>
-              </h3>
+              <div class="title-wrapper">
+                <h3>
+                  <a href="/posts/<%= id %>"><%= title %></a>
+                </h3>
+                <div class="buttons-wrapper">
+                  <button data-id="<%= id %>">x</button>
+                </div>
+              </div>
               <p><%= text %></p>
               <div class="posts-info">
                 <span><%= date %></span>
@@ -24,5 +29,17 @@
       <% } %>
     </ul>
   </div>
+  <script>
+    document.addEventListener('click', (e) => {
+      const id = e.target?.dataset?.id || null;
+      if (id) {
+        fetch(`/posts/${id}`, {
+          method: 'DELETE',
+        }).then(() => {
+          window.location.reload();
+        });
+      }
+    })
+  </script>
 </body>
 </html>

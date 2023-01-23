@@ -3,12 +3,12 @@ const path = require('path');
 const oldData = require('../data/posts.json');
 
 
-const writePost = async (data) => {
+const deletePost = async (postId) => {
 
   const createPath = () => path.resolve(__dirname, '../data', 'posts.json');
-
+  
   const newData = {
-    posts: [data,...oldData.posts]
+    posts: oldData.posts.filter(post => post.id !== postId)
   };
 
   fs.writeFile(createPath(), JSON.stringify(newData), (err) => {
@@ -16,4 +16,4 @@ const writePost = async (data) => {
   });
 };
 
-module.exports = writePost;
+module.exports = deletePost;
