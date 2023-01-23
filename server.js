@@ -40,13 +40,6 @@ app.get('/about', (req, res) => {
   res.redirect(createPath('ContactsPage'), { title });
 });
 
-app.get('/posts', (req, res) => {
-  const title = 'Posts';
-  const posts = postsJSON.posts;
-  
-  res.render(createPath('PostsPage'), { title, posts });
-});
-
 app.get('/add-post', (req, res) => {
   const title = 'New Post';
   res.render(createPath('AddPostPage'), { title });

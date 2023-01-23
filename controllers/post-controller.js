@@ -32,8 +32,16 @@ const deletePost = (req, res) => {
   res.render(createPath('PostsPage'), { title, posts });
 };
 
+const getPosts = (req, res) => {
+  const title = 'Posts';
+  const posts = postsJSON.posts;
+  
+  res.render(createPath('PostsPage'), { title, posts });
+}
+
 module.exports = {
   getPost,
   addPost,
-  deletePost
+  deletePost,
+  getPosts,
 }
