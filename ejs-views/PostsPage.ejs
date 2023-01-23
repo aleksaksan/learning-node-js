@@ -8,8 +8,8 @@
     <ul class="posts-wrapper">
       <% if (posts.length) { %>
         <% posts.forEach(({ id, title, date, author, text }) => { %>
-          <li>
-            <article class="post-container">
+          <li class="post-container">
+            <article>
               <h3>
                 <a href="/posts/<%= id %>"><%= title %></a>
               </h3>

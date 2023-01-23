@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const writePost = require('./functions-for-json/writePost');
+const postsJSON = require('./data/posts.json');
 
 const app = express();
 
@@ -53,27 +55,29 @@ app.get('/about', (req, res) => {
 
 app.get('/posts', (req, res) => {
   const title = 'Posts';
-  const posts = [
-    {
-      id: 1,
-      text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, autem maxime! Recusandae tempora quos ipsam animi doloribus. Sed ut quam libero hic dolores corrupti, ad pariatur explicabo consequatur omnis facere.',
-      title: 'First post',
-      date: '22.01.2023',
-      author: 'Aleksan',
-    },
-  ];
+  const posts = postsJSON.posts;
+  // const posts = [
+  //   {
+  //     id: 1,
+  //     text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, autem maxime! Recusandae tempora quos ipsam animi doloribus. Sed ut quam libero hic dolores corrupti, ad pariatur explicabo consequatur omnis facere.',
+  //     title: 'First post',
+  //     date: '22.01.2023',
+  //     author: 'Aleksan',
+  //   },
+  // ];
   res.render(createPath('PostsPage'), { title, posts });
 });
 
 app.get('/posts/:id', (req, res) => {
   const title = 'Post';
-  const post = {
-    id: 1,
-    text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, autem maxime! Recusandae tempora quos ipsam animi doloribus. Sed ut quam libero hic dolores corrupti, ad pariatur explicabo consequatur omnis facere.',
-    title: 'First post',
-    date: '22.01.2023',
-    author: 'Aleksan',
-  };
+  // const post = {
+  //   id: 1,
+  //   text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, autem maxime! Recusandae tempora quos ipsam animi doloribus. Sed ut quam libero hic dolores corrupti, ad pariatur explicabo consequatur omnis facere.',
+  //   title: 'First post',
+  //   date: '22.01.2023',
+  //   author: 'Aleksan',
+  // };
+  const post = postsJSON.posts.find(el => el.id === req.params.id)
   res.render(createPath('PostPage'), { title, post });
 });
 
@@ -81,6 +85,8 @@ app.get('/add-post', (req, res) => {
   const title = 'New Post';
   res.render(createPath('AddPostPage'), { title });
 });
+
+//POST//
 
 app.post('/add-post', (req, res) => {
   const { title, author, text } = req.body;
@@ -91,6 +97,7 @@ app.post('/add-post', (req, res) => {
     author,
     text,
   };
+  writePost(post);
   res.render(createPath('PostPage'), { title, post });
 });
 
