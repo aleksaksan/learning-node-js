@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/head.ejs') %>
-<body style="background-color: rgb(255, 255, 222);">
-  <div>
-    <%- include('./partials/nav.ejs') %>
-    <h1>Home</h1>
+<body>
+  <%- include('./partials/nav.ejs') %>
+  <div class="container">
+    <article>
+      <div class="posts-info">
+        <span><%= post.date %></span>
+        <span><%= post.author %></span>
+      </div>
+      <h1><%= post.title %></h1>
+      <p><%= post.text %></p>
+    </article>
   </div>
 </body>
 </html>

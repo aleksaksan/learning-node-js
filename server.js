@@ -1,5 +1,9 @@
 const express = require('express');
-const path = require('path');
+const postsJSON = require('./data/posts.json');
+const postRouter = require('./routes/post-routes');
+const postApiRouter = require('./routes/api-post-routes');
+const contactsRouter = require('./routes/contacts-routes');
+const createPath = require('./helpers/createPath');
 
 const app = express();
 
@@ -7,27 +11,28 @@ app.set('view engine', 'ejs');
 
 const PORT = 5000;
 
-const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`);
-
 app.listen(PORT, (error) => {
   error ? console.log(error) : console.log(`listening port ${PORT}`);
 });
 
+////////////////////////
+
+// middleware should be before methods
+app.use((req, res, next) => {
+  console.log(`path:    ${req.path}`);
+  console.log(`method:  ${req.method}`);
+  next();
+});
+
+app.use(express.urlencoded({ extended: false }));
+
+// adding an exclusion to be able folder from outside server 
+app.use(express.static('styles'));
+
+// methods:
 app.get('/', (req, res) => {
   const title = 'Home';
   res.render(createPath('HomePage'), { title });
-});
-
-// var to ejs:
-
-app.get('/contacts', (req, res) => {
-  const title = 'Contacts';
-  const contacts = [
-    { name: 'YouTube', link: 'https://youtube.com' },
-    { name: 'Google', link: 'https://google.com' },
-    { name: 'GitHub', link: 'https://github.com/' },
-  ];
-  res.render(createPath('ContactsPage'), { contacts, title });
 });
 
 // redirect (status code: 3xx)
@@ -36,21 +41,16 @@ app.get('/about', (req, res) => {
   res.redirect(createPath('ContactsPage'), { title });
 });
 
-app.get('/posts', (req, res) => {
-  const title = 'Posts';
-  res.render(createPath('PostsPage'), { title });
-});
-
-app.get('/posts/:id', (req, res) => {
-  const title = 'Post';
-  res.render(createPath('PostPage'), { title });
-});
-
 app.get('/add-post', (req, res) => {
   const title = 'New Post';
   res.render(createPath('AddPostPage'), { title });
 });
 
+app.use(postRouter);
+app.use(contactsRouter);
+app.use(postApiRouter);
+
+///////////////
 app.use((req, res) => {
   const title = 'Error';
   res

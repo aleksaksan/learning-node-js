@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/head.ejs') %>
-<body style="background-color: rgb(255, 255, 222);">
-  <div>
-    <%- include('./partials/nav.ejs') %>
+<body>
+  <%- include('./partials/nav.ejs') %>
+  <div class="container">
     <h1>Posts</h1>
-
+    <ul class="posts-wrapper">
+      <% if (posts.length) { %>
+        <% posts.forEach(({ id, title, date, author, text }) => { %>
+          <li class="post-container">
+            <article>
+              <div class="title-wrapper">
+                <h3>
+                  <a href="/posts/<%= id %>"><%= title %></a>
+                </h3>
+                <div class="buttons-wrapper">
+                  <button data-id="<%= id %>">x</button>
+                </div>
+              </div>
+              <p><%= text %></p>
+              <div class="posts-info">
+                <span><%= date %></span>
+                <span><%= author %></span>
+              </div>
+            </article>
+          </li>
+        <% }) %>
+      <% } %>
+    </ul>
   </div>
+  <script>
+    document.addEventListener('click', (e) => {
+      const id = e.target?.dataset?.id || null;
+      if (id) {
+        fetch(`/posts/${id}`, {
+          method: 'DELETE',
+        }).then(() => {
+          window.location.reload();
+        });
+      }
+    })
+  </script>
 </body>
 </html>

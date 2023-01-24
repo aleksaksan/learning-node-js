@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/head.ejs') %>
-<body style="background-color: rgb(255, 255, 222);">
-  <div>
-    <%- include('./partials/nav.ejs') %>
+<body>
+  <%- include('./partials/nav.ejs') %>
+  <div class="container">
     <h1>New Post</h1>
+    <form id="post-form" method="post" action="/add-post">
+      <div class="input-wrapper">
+        <span class="input-container">
+          <label>Post title:
+            <input type="text" name="title"/>
+          </label>
+        </span>  
+        <span class="input-container">
+          <label>Authtor:
+            <input type="text" name="author"/>
+          </label>
+        </span>
+      </div>
+      <div>Text:</div>
+      <textarea type="text" name="text" required></textarea>
+      <input type="submit" value="Submit" />
+    </form>
   </div>
 </body>
 </html>
