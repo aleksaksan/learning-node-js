@@ -1,6 +1,7 @@
 const express = require('express');
 const postsJSON = require('./data/posts.json');
 const postRouter = require('./routes/post-routes');
+const postApiRouter = require('./routes/api-post-routes');
 const contactsRouter = require('./routes/contacts-routes');
 const createPath = require('./helpers/createPath');
 
@@ -47,6 +48,7 @@ app.get('/add-post', (req, res) => {
 
 app.use(postRouter);
 app.use(contactsRouter);
+app.use(postApiRouter);
 
 ///////////////
 app.use((req, res) => {
